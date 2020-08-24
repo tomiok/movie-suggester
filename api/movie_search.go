@@ -1,19 +1,23 @@
 package api
 
-import "time"
+import (
+	"github.com/tomiok/movies-suggester/internal/database"
+	"github.com/tomiok/movies-suggester/internal/logs"
+)
 
 type MovieFilter struct {
-	Title    string `json:"title"`
-	Genre    string `json:"genre"`
-	Director string `json:"director"`
+	Title    string `json:"title,omitempty"`
+	Genre    string `json:"genre,omitempty"`
+	Director string `json:"director,omitempty"`
 }
 
 type Movie struct {
-	Title       string    `json:"title"`
-	Cast        string    `json:"cast"`
-	ReleaseDate time.Time `json:"release_date"`
-	Genre       string    `json:"genre"`
-	Director    string    `json:"director,omitempty"`
+	Id          string `json:"id"`
+	Title       string `json:"title"`
+	Cast        string `json:"cast"`
+	ReleaseDate string `json:"release_date"`
+	Genre       string `json:"genre"`
+	Director    string `json:"director,omitempty"`
 }
 
 type MovieSearch interface {
@@ -21,29 +25,35 @@ type MovieSearch interface {
 }
 
 type MovieService struct {
+	*database.MySqlClient
 }
 
 func (s *MovieService) Search(filter MovieFilter) ([]Movie, error) {
-	m1 := Movie{
-		Title:       "Blade Runner",
-		Cast:        "Harrison Ford",
-		ReleaseDate: time.Now(),
-		Genre:       "Cs Fiction",
-		Director:    "",
+	tx, err := s.Begin()
+
+	if err != nil {
+		logs.Error("cannot create transaction")
+		return nil, err
 	}
 
-	m2 := Movie{
-		Title:       "Drive",
-		Cast:        "Ryan Gosling",
-		ReleaseDate: time.Now(),
-		Genre:       "Drama",
-		Director:    "",
+	rows, err := tx.Query(getMoviesQuery())
+
+	if err != nil {
+		logs.Error("cannot read movies " + err.Error())
+		_ = tx.Rollback()
+		return nil, err
 	}
 
 	var _movies []Movie
+	for rows.Next() {
+		var movie Movie
+		err := rows.Scan(&movie.Id, &movie.Title, &movie.Cast, &movie.Genre, &movie.ReleaseDate, &movie.Director)
+		if err != nil {
+			logs.Error("cannot read movies " + err.Error())
+		}
+		_movies = append(_movies, movie)
+	}
 
-	_movies = append(_movies, m1)
-	_movies = append(_movies, m2)
-
+	_ = tx.Commit()
 	return _movies, nil
 }

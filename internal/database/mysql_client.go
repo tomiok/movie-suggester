@@ -22,4 +22,5 @@ func NewMySQLClient() *MySqlClient {
 
 	}
 
+	return &MySqlClient{db}
 }
