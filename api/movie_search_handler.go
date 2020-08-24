@@ -1,6 +1,8 @@
 package api
 
-import "github.com/gofiber/fiber"
+import (
+	"github.com/gofiber/fiber"
+)
 
 func (w *WebServices) SearchMovieHandler(c *fiber.Ctx) {
 	res, err := w.s.search.Search(MovieFilter{})
