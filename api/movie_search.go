@@ -36,7 +36,7 @@ func (s *MovieService) Search(filter MovieFilter) ([]Movie, error) {
 		return nil, err
 	}
 
-	rows, err := tx.Query(getMoviesQuery())
+	rows, err := tx.Query(getMoviesQuery(filter))
 
 	if err != nil {
 		logs.Error("cannot read movies " + err.Error())

@@ -18,5 +18,9 @@ func (w *WebServices) SearchMovieHandler(c *fiber.Ctx) {
 		return
 	}
 
+	if len(res) == 0 {
+		_ = c.JSON([]interface{}{})
+	}
+
 	_ = c.JSON(res)
 }
