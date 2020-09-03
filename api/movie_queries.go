@@ -55,3 +55,7 @@ func getMoviesQuery(filter MovieFilter) string {
 		return b.String()
 	}
 }
+
+func CreateUserQuery() string {
+	return "insert into user (id, username, password) values (?, ?, ?)"
+}

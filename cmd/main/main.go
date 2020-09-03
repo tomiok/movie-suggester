@@ -8,7 +8,10 @@ import (
 
 func main() {
 	app := fiber.New()
+
 	internal.SetErrorHandler(app)
 	api.SetupMoviesRoutes(app)
+	api.SetupUsersRoutes(app)
+
 	_ = app.Listen("3001")
 }
