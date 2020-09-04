@@ -32,7 +32,7 @@ func (s *MovieService) Search(filter MovieFilter) ([]Movie, error) {
 	tx, err := s.Begin()
 
 	if err != nil {
-		logs.Error("cannot create transaction")
+		logs.Error("cannot create transaction " + err.Error())
 		return nil, err
 	}
 
