@@ -24,7 +24,7 @@ func (w *WebServices) CreateUserHandler(c *fiber.Ctx) {
 	claims["admin"] = true
 	claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
 
-	t, err := token.SignedString([]byte("mysecretkey-changeme"))
+	t, err := token.SignedString([]byte(w.tokenKey))
 
 	res.JWT = t
 	_ = c.JSON(res)

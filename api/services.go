@@ -17,8 +17,9 @@ func NewServices() Services {
 
 type WebServices struct {
 	Services
+	tokenKey string
 }
 
-func start() *WebServices {
-	return &WebServices{NewServices()}
+func start(tokenKey string) *WebServices {
+	return &WebServices{NewServices(), tokenKey}
 }
