@@ -5,6 +5,7 @@ import (
 	"github.com/gofiber/fiber/middleware"
 	"github.com/tomiok/movies-suggester/api"
 	"github.com/tomiok/movies-suggester/internal"
+	"github.com/tomiok/movies-suggester/internal/logs"
 )
 
 func main() {
@@ -14,6 +15,6 @@ func main() {
 	app.Use(middleware.Recover())
 	api.SetupMoviesRoutes(app, key)
 	api.SetupUsersRoutes(app, key)
-
+	logs.Info("starting...")
 	_ = app.Listen("3001")
 }
