@@ -20,7 +20,8 @@ type UserSummary struct {
 
 type UserGateway interface {
 	SaveUser(cmd CreateUserCMD) (*UserSummary, error)
-	Login()
+	Login(cmd LoginCMD) string
+	AddWishMovie(userID, movieID, comment string) error
 }
 
 type UserService struct {
@@ -43,6 +44,24 @@ func (us *UserService) SaveUser(cmd CreateUserCMD) (*UserSummary, error) {
 	}, nil
 }
 
-func (us *UserService) Login() {
+// returns a string for the JWT
+func (us *UserService) Login(cmd LoginCMD) string {
+	var id string
+	err := us.QueryRow(GetLoginQuery(), cmd.Username, cmd.Password).Scan(&id)
 
+	if err != nil {
+		logs.Error(err.Error())
+		return ""
+	}
+	return id
+}
+
+func (us *UserService) AddWishMovie(userID, movieID, comment string) error {
+	_, err := us.Exec(GetAddWishMovieQuery(), userID, movieID, comment)
+
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

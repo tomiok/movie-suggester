@@ -59,3 +59,11 @@ func getMoviesQuery(filter MovieFilter) string {
 func CreateUserQuery() string {
 	return "insert into user (id, username, password) values (?, ?, ?)"
 }
+
+func GetLoginQuery() string {
+	return "select id from user where username = ? and password = ?"
+}
+
+func GetAddWishMovieQuery() string {
+	return "insert into wish_list (user_id, movie_id, comment) values (?,?,?)"
+}
