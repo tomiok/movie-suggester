@@ -9,7 +9,7 @@ import (
 
 var (
 	infoLogger  = log.New(os.Stdout, "", 0)
-	errorLogger = log.New(os.Stdout, "ERROR:", log.Lshortfile|log.Ltime)
+	errorLogger = log.New(os.Stdout, "", log.Lshortfile|log.Ltime)
 )
 
 func Info(s interface{}) {
