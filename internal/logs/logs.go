@@ -13,7 +13,7 @@ var (
 )
 
 func Info(s interface{}) {
-	pc, file, line, ok :=runtime.Caller(1)
+	pc, file, line, ok := runtime.Caller(1)
 	if ok {
 		infoLogger.Print(s)
 		infoLogger.Print(runtime.FuncForPC(pc).Name())
