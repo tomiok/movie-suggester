@@ -1,10 +1,10 @@
 package api
 
 import (
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 )
 
-func (w *WebServices) SearchMovieHandler(c *fiber.Ctx) {
+func (w *WebServices) SearchMovieHandler(c *fiber.Ctx) error {
 
 	res, err := w.search.Search(MovieFilter{
 		Title:    c.Query("title"),
@@ -13,14 +13,12 @@ func (w *WebServices) SearchMovieHandler(c *fiber.Ctx) {
 	})
 
 	if err != nil {
-		err = fiber.NewError(400, "cannot bring movies")
-		c.Next(err)
-		return
+		return fiber.NewError(400, "cannot bring movies")
 	}
 
 	if len(res) == 0 {
-		_ = c.JSON([]interface{}{})
+		return c.JSON([]interface{}{})
 	}
 
-	_ = c.JSON(res)
+	return c.JSON(res)
 }

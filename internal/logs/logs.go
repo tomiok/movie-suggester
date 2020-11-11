@@ -3,8 +3,6 @@ package logs
 import (
 	"log"
 	"os"
-	"path"
-	"runtime"
 )
 
 var (
@@ -13,13 +11,7 @@ var (
 )
 
 func Info(s interface{}) {
-	pc, file, line, ok := runtime.Caller(1)
-	if ok {
-		infoLogger.Print(s)
-		infoLogger.Print(runtime.FuncForPC(pc).Name())
-		infoLogger.Print(path.Base(file))
-		infoLogger.Print(line)
-	}
+	infoLogger.Print(s)
 }
 
 func Error(s interface{}) {

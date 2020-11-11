@@ -2,13 +2,13 @@ package api
 
 import (
 	"github.com/dgrijalva/jwt-go"
-	"github.com/gofiber/fiber"
-	jwtware "github.com/gofiber/jwt"
+	"github.com/gofiber/fiber/v2"
+	jwtware "github.com/gofiber/jwt/v2"
 	"github.com/tomiok/movies-suggester/internal/logs"
 	"time"
 )
 
-func jwtMiddleware(secret string) func(*fiber.Ctx) {
+func jwtMiddleware(secret string) fiber.Handler {
 	return jwtware.New(jwtware.Config{
 		SigningKey: []byte(secret),
 	})

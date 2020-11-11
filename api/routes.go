@@ -1,7 +1,7 @@
 package api
 
 import (
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 )
 
 func SetupMoviesRoutes(app *fiber.App, tokenKey string) {
