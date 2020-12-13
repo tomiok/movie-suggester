@@ -1,6 +1,9 @@
 package api
 
-import "github.com/tomiok/movies-suggester/internal/database"
+import (
+	embedded "github.com/tomiok/fuego-cache/clients/inmemory"
+	"github.com/tomiok/movies-suggester/internal/database"
+)
 
 type Services struct {
 	search MovieSearch
@@ -18,8 +21,10 @@ func NewServices() Services {
 type WebServices struct {
 	Services
 	tokenKey string
+	cache    *embedded.FuegoInMemory
 }
 
 func start(tokenKey string) *WebServices {
-	return &WebServices{NewServices(), tokenKey}
+	inMemoryDB := embedded.NewInMemory()
+	return &WebServices{NewServices(), tokenKey, inMemoryDB}
 }

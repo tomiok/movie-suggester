@@ -10,5 +10,6 @@ require (
 	github.com/gofiber/jwt/v2 v2.0.1
 	github.com/gofiber/utils v0.0.10
 	github.com/klauspost/compress v1.11.2 // indirect
+	github.com/tomiok/fuego-cache v0.0.2
 	golang.org/x/sys v0.0.0-20201109165425-215b40eba54c // indirect
 )
