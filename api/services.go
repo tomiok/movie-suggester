@@ -25,6 +25,6 @@ type WebServices struct {
 }
 
 func start(tokenKey string) *WebServices {
-	inMemoryDB := embedded.NewInMemory()
+	inMemoryDB := embedded.NewInMemory(false, "")
 	return &WebServices{NewServices(), tokenKey, inMemoryDB}
 }

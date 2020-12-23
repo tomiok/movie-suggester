@@ -18,6 +18,8 @@ github.com/klauspost/compress v1.11.2 h1:MiK62aErc3gIiVEtyzKfeOHgW7atJb5g/KNX5m3
 github.com/klauspost/compress v1.11.2/go.mod h1:aoV0uJVorq1K+umq18yTdKaF57EivdYsUV+/s2qKfXs=
 github.com/tomiok/fuego-cache v0.0.2 h1:E/4qHgRgCsB43Un0Pmomd2H5ONiRz63H/R10y257h4Y=
 github.com/tomiok/fuego-cache v0.0.2/go.mod h1:mfKEd2Jx1Qk2P788OuJ5m4ovnlWoUPkpx0biWnA6NBU=
+github.com/tomiok/fuego-cache v0.0.3 h1:gPOCIJM/QK+tOP6lnuvmV9cQssvwPG749FnLfpgja90=
+github.com/tomiok/fuego-cache v0.0.3/go.mod h1:mfKEd2Jx1Qk2P788OuJ5m4ovnlWoUPkpx0biWnA6NBU=
 github.com/valyala/bytebufferpool v1.0.0 h1:GqA5TC/0021Y/b9FG4Oi9Mr3q7XYx6KllzawFIhcdPw=
 github.com/valyala/bytebufferpool v1.0.0/go.mod h1:6bBcMArwyJ5K/AmCkWv1jt77kVWyCJ6HpOuEn7z0Csc=
 github.com/valyala/fasthttp v1.16.0/go.mod h1:YOKImeEosDdBPnxc0gy7INqi3m1zK6A+xl6TwOBhHCA=

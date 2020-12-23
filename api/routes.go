@@ -8,6 +8,9 @@ func SetupMoviesRoutes(app *fiber.App, tokenKey string) {
 	s := start(tokenKey)
 	grp := app.Group("/movies")
 	grp.Get("/", s.SearchMovieHandler)
+	grp.Post("/upcoming", s.AddUpcomingHandler)
+	grp.Get("/upcoming", s.GetUpcomingHandler)
+	grp.Delete("/upcoming", s.DeleteUpcomingHandler)
 }
 
 func SetupUsersRoutes(app *fiber.App, tokenKey string) {
