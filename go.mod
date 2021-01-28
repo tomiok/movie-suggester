@@ -11,5 +11,6 @@ require (
 	github.com/gofiber/utils v0.0.10
 	github.com/klauspost/compress v1.11.2 // indirect
 	github.com/tomiok/fuego-cache v0.0.3
+	go.mongodb.org/mongo-driver v1.4.5
 	golang.org/x/sys v0.0.0-20201109165425-215b40eba54c // indirect
 )

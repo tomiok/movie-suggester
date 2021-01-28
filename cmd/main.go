@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+
 	app := fiber.New(fiber.Config{
 		ErrorHandler: func(ctx *fiber.Ctx, err error) error {
 			// Status code defaults to 500
